@@ -23,6 +23,9 @@ Bayleaf WordPress theme uses Google Fonts for your website by default. Fonts and
 
 == Changelog ==
 
+= 1.3.5 =
+* Compliance with latest WPCS and theme sniffer standards.
+
 = 1.3.4 =
 * Add: Added admin notice to help new users get started quickly.
 
