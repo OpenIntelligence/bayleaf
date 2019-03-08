@@ -12,9 +12,9 @@ if ( is_home() && ! is_front_page() ) :?>
 		<h1<?php bayleaf_attr( 'page-header-title' ); ?>><?php single_post_title(); ?></h1>
 	</header><!-- .page-header -->
 
-<?php
+	<?php
 elseif ( is_archive() ) :
-?>
+	?>
 
 	<header<?php bayleaf_attr( 'page-header', [ 'class' => 'archive-page-header' ] ); ?>>
 		<?php
@@ -23,20 +23,21 @@ elseif ( is_archive() ) :
 		?>
 	</header><!-- .page-header -->
 
-<?php
+	<?php
 elseif ( is_search() ) :
-?>
+	?>
 
 	<header<?php bayleaf_attr( 'page-header' ); ?>>
 		<h1<?php bayleaf_attr( 'page-header-title' ); ?>>
 			<?php
 			printf(
 				/* translators: %s: Search term */
-				esc_html__( 'Search Results for: %s', 'bayleaf' ), '<span>' . get_search_query() . '</span>'
+				esc_html__( 'Search Results for: %s', 'bayleaf' ),
+				'<span>' . get_search_query() . '</span>'
 			);
 			?>
 		</h1>
 	</header><!-- .page-header -->
 
-<?php
+	<?php
 endif;

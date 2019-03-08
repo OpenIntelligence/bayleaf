@@ -145,7 +145,8 @@ class WooCommerce {
 	 * @return array Array of arguments for the sidebar being registered.
 	 */
 	public function register_widget_areas( $widgets ) {
-		return array_merge( $widgets,
+		return array_merge(
+			$widgets,
 			[
 				[
 					'name'          => esc_html__( 'WooCommerce - Archive Filters', 'bayleaf' ),
@@ -208,30 +209,38 @@ class WooCommerce {
 		$cart_text = $cart_contents_count ? esc_html__( 'Continue Shopping', 'bayleaf' ) : esc_html__( 'Start Shopping', 'bayleaf' );
 
 		// Markup for number of items added to the cart (if any).
-		$display_items_count = sprintf( '<span class="wc-cart-items %1$s">%2$s</span>',
-			$cart_class, absint( $cart_contents_count )
+		$display_items_count = sprintf(
+			'<span class="wc-cart-items %1$s">%2$s</span>',
+			$cart_class,
+			absint( $cart_contents_count )
 		);
 
 		// Shop page link markup.
-		$shopping_page_link = sprintf( '<a class="wc-shop-pagelink" href="%1$s">%2$s <span class="long-arrow-right">%3$s</span></a>',
+		$shopping_page_link = sprintf(
+			'<a class="wc-shop-pagelink" href="%1$s">%2$s <span class="long-arrow-right">%3$s</span></a>',
 			esc_url( wc_get_page_permalink( 'shop' ) ),
 			$cart_text,
 			bayleaf_get_icon( [ 'icon' => 'long-arrow-right' ] )
 		);
 
 		// Shop cart widget toggle button.
-		printf( '<button aria-expanded="false" class="wc-cart-toggle" %1$s>%2$s<span class="screen-reader-text">%3$s</span>%4$s</button>',
+		printf(
+			'<button aria-expanded="false" class="wc-cart-toggle" %1$s>%2$s<span class="screen-reader-text">%3$s</span>%4$s</button>',
 			is_cart() || is_checkout() ? 'disabled' : '',
-			bayleaf_get_icon( [ 'icon' => 'cart' ] ),
+			bayleaf_get_icon( [ 'icon' => 'cart' ] ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			esc_html__( 'View shopping cart', 'bayleaf' ),
-			$display_items_count
-		); // WPCS xss ok. We get escaped values from bayleaf_get_icon() and $display_items_count.
+			$display_items_count // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		);
 
 		// Display woocommerce cart widget.
-		the_widget( 'WC_Widget_Cart', [ 'title' => '' ], [
-			'before_widget' => '<div id="wc-cart-widget" class="widget %s">',
-			'after_widget'  => $shopping_page_link . '</div>',
-		] );
+		the_widget(
+			'WC_Widget_Cart',
+			[ 'title' => '' ],
+			[
+				'before_widget' => '<div id="wc-cart-widget" class="widget %s">',
+				'after_widget'  => $shopping_page_link . '</div>',
+			]
+		);
 	}
 
 	/**
@@ -417,7 +426,8 @@ class WooCommerce {
 	 * @return array Returns array of theme customizer sections.
 	 */
 	public function customizer_section( $sections = [] ) {
-		return array_merge( $sections,
+		return array_merge(
+			$sections,
 			[
 				'bayleaf_woocommerce_section' =>
 				[
@@ -437,7 +447,8 @@ class WooCommerce {
 	 * @return array Returns array of theme controls and settings.
 	 */
 	public function customizer_controls( $controls = [] ) {
-		return array_merge( $controls,
+		return array_merge(
+			$controls,
 			[
 				[
 					'label'   => esc_html__( 'Shop Page Sidebar Layout', 'bayleaf' ),
@@ -468,10 +479,13 @@ class WooCommerce {
 	 * @return array Returns Array of customizer option default values.
 	 */
 	public function customizer_defaults( $defaults = [] ) {
-		return array_merge( $defaults, [
-			'bayleaf_woo_shop_layout' => 'sidebar-left',
-			'bayleaf_woo_mini_cart'   => 1,
-		] );
+		return array_merge(
+			$defaults,
+			[
+				'bayleaf_woo_shop_layout' => 'sidebar-left',
+				'bayleaf_woo_mini_cart'   => 1,
+			]
+		);
 	}
 
 	/**

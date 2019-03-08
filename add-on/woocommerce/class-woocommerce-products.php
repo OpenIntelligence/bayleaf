@@ -99,17 +99,20 @@ class Woocommerce_Products extends \WP_Widget {
 
 		$after_title = apply_filters( 'bayleaf_after_woo_widget_title', $args['after_title'], $instance );
 
-		echo $args['before_widget']; // WPCS xss ok. Contains HTML.
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( $title ) {
-			echo $args['before_title'] . $title . $after_title; // WPCS xss ok. Contains HTML.
+			echo $args['before_title'] . $title . $after_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
-		$product_args = apply_filters( 'bayleaf_woocommerce_products_args', array(
-			'per_page' => intval( $instance['number'] ),
-			'columns'  => intval( $instance['columns'] ),
-			'order'    => 'desc',
-		) );
+		$product_args = apply_filters(
+			'bayleaf_woocommerce_products_args',
+			array(
+				'per_page' => intval( $instance['number'] ),
+				'columns'  => intval( $instance['columns'] ),
+				'order'    => 'desc',
+			)
+		);
 
 		switch ( $instance['products_by'] ) {
 			case 'featured':
@@ -139,10 +142,10 @@ class Woocommerce_Products extends \WP_Widget {
 
 		$shortcode_content = call_user_func( $shortcode_tags['products'], $product_args );
 		if ( false !== strpos( $shortcode_content, 'product' ) ) {
-			echo $shortcode_content; // WPCS xss ok. Contains HTML, other values escaped.
+			echo $shortcode_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
-		echo $args['after_widget']; // WPCS xss ok. Contains HTML.
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -215,7 +218,7 @@ class Woocommerce_Products extends \WP_Widget {
 	public function label( $for, $text, $echo = true ) {
 		$label = sprintf( '<label for="%s">%s:</label>', esc_attr( $this->get_field_id( $for ) ), esc_html( $text ) );
 		if ( $echo ) {
-			echo $label; // WPCS xss ok. Contains HTML. Other values escaped.
+			echo $label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $label;
 		}
@@ -243,7 +246,8 @@ class Woocommerce_Products extends \WP_Widget {
 			$select .= sprintf( '<option value="%1$s" %2$s %3$s>%4$s</option>', esc_attr( $value ), $final_class, selected( $value, $selected, false ), esc_html( $label ) );
 		}
 
-		$select = sprintf( '<select id="%1$s" name="%2$s" class="bayleaf-%3$s widefat">%4$s</select>',
+		$select = sprintf(
+			'<select id="%1$s" name="%2$s" class="bayleaf-%3$s widefat">%4$s</select>',
 			esc_attr( $this->get_field_id( $for ) ),
 			esc_attr( $this->get_field_name( $for ) ),
 			esc_attr( str_replace( '_', '-', $for ) ),
@@ -251,7 +255,7 @@ class Woocommerce_Products extends \WP_Widget {
 		);
 
 		if ( $echo ) {
-			echo $select; // WPCS xss ok. Contains HTML. Other values escaped.
+			echo $select; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $select;
 		}

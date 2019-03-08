@@ -48,7 +48,7 @@ function bayleaf_markup( $class = '', $callbacks = [], $open = '<div%s>', $close
 		return;
 	}
 
-	printf( $open, bayleaf_get_attr( $context, [ 'class' => $classes ] ) ); // WPCS xss ok. Contains HTML, other values escaped.
+	printf( $open, bayleaf_get_attr( $context, [ 'class' => $classes ] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	foreach ( $callbacks as $callback ) {
 		$callback = (array) $callback;
@@ -59,7 +59,7 @@ function bayleaf_markup( $class = '', $callbacks = [], $open = '<div%s>', $close
 			$function = array_shift( $callback );
 
 			if ( is_callable( $function ) ) {
-				echo call_user_func_array( $function, $callback ); // WPCS xss ok. Probably will contain HTML. Called function will handle escaping.
+				echo call_user_func_array( $function, $callback ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		} else {
 			if ( is_callable( $function ) ) {
@@ -68,7 +68,7 @@ function bayleaf_markup( $class = '', $callbacks = [], $open = '<div%s>', $close
 		}
 	}
 
-	echo $close; // WPCS xss ok. Contains HTML.
+	echo $close; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -84,7 +84,7 @@ function bayleaf_markup( $class = '', $callbacks = [], $open = '<div%s>', $close
  * @param  array $attr Array of attributes to pass in (overwrites filters).
  */
 function bayleaf_attr( $slug, $attr = [] ) {
-	echo bayleaf_get_attr( $slug, $attr ); // WPCS xss ok. Values escaped by called function.
+	echo bayleaf_get_attr( $slug, $attr ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -143,7 +143,7 @@ function bayleaf_get_attr( $slug, $attr = [] ) {
 function bayleaf_icon( $args = [] ) {
 	$icon_markup = bayleaf_get_icon( $args );
 	if ( $icon_markup ) {
-		echo $icon_markup; // WPCS xss ok. Contains HTML, Other values escaped.
+		echo $icon_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -273,8 +273,8 @@ function bayleaf_nav_menu( $nav_classes, $label, $args = [] ) {
 		esc_attr( $nav_id ),
 		esc_attr( $nav_classes ),
 		esc_attr( $label ),
-		$menu
-	); // WPCS xss ok. $menu contains HTML, variable values escaped properly.
+		$menu // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	);
 }
 
 /**

@@ -61,7 +61,8 @@ function bayleaf_setup() {
 	$GLOBALS['content_width'] = 1280;
 
 	// Allows the use of valid HTML5 markup.
-	add_theme_support( 'html5',
+	add_theme_support(
+		'html5',
 		array(
 			'comment-form',
 			'comment-list',
@@ -71,7 +72,8 @@ function bayleaf_setup() {
 	);
 
 	// Enable support for Post Formats.
-	add_theme_support( 'post-formats',
+	add_theme_support(
+		'post-formats',
 		array(
 			'image',
 			'video',
@@ -88,7 +90,8 @@ function bayleaf_setup() {
 	 *
 	 * @param arrray $locations Associative array of menu location identifiers (like a slug) and descriptive text.
 	 */
-	$locations = apply_filters( 'bayleaf_nav_menus',
+	$locations = apply_filters(
+		'bayleaf_nav_menus',
 		array(
 			'primary' => esc_html__( 'Primary Menu', 'bayleaf' ),
 			'social'  => esc_html__( 'Social Menu', 'bayleaf' ),
@@ -195,7 +198,8 @@ function bayleaf_setup() {
 	 *
 	 * @param arrray $addons Array of addon features for this theme.
 	 */
-	$addons = apply_filters( 'bayleaf_theme_support',
+	$addons = apply_filters(
+		'bayleaf_theme_support',
 		array(
 			'widgetlayer',
 			'display-posts',
@@ -273,7 +277,8 @@ function bayleaf_widgets_init() {
 	 *     @type string $description   Description of the sidebar.
 	 * }
 	 */
-	$widgets = apply_filters( 'bayleaf_register_sidebar',
+	$widgets = apply_filters(
+		'bayleaf_register_sidebar',
 		array(
 			array(
 				'name' => esc_html__( 'Sidebar Widgets', 'bayleaf' ),
@@ -414,7 +419,8 @@ function bayleaf_scripts() {
 	);
 
 	// Theme localize scripts data.
-	$l10n = apply_filters( 'bayleaf_localize_script_data',
+	$l10n = apply_filters(
+		'bayleaf_localize_script_data',
 		array(
 			'menu'   => 'primary-menu', // ID of nav-menu first UL element.
 			'play'   => bayleaf_get_icon( array( 'icon' => 'play' ) ),

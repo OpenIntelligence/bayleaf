@@ -70,7 +70,8 @@ add_action( 'wp_footer', 'bayleaf_svg_icons', 9999 );
  */
 function bayleaf_skip_link() {
 
-	printf( '<a class="skip-link screen-reader-text" href="#content">%s</a>',
+	printf(
+		'<a class="skip-link screen-reader-text" href="#content">%s</a>',
 		esc_html__( 'Skip to content', 'bayleaf' )
 	);
 }
@@ -131,7 +132,8 @@ function bayleaf_site_branding() {
 
 	if ( bayleaf_get_mod( 'bayleaf_display_site_title', 'none' ) ) {
 		array_push(
-			$site_branding, [ 'bayleaf_get_template_partial', 'template-parts/header', 'site-title' ]
+			$site_branding,
+			[ 'bayleaf_get_template_partial', 'template-parts/header', 'site-title' ]
 		);
 	}
 
@@ -151,7 +153,7 @@ function bayleaf_main_navigation() {
 	printf(
 		'<button aria-expanded="false" class="menu-toggle"><span class="bar"><span class="screen-reader-text">%1$s</span></span></button>',
 		esc_html__( 'Site Navigation', 'bayleaf' )
-	); // WPCS xss ok.
+	); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	bayleaf_nav_menu(
 		'site-navigation',
@@ -190,7 +192,7 @@ function bayleaf_header_widgets() {
 	printf(
 		'<button class="action-toggle"><span class="bar"><span class="screen-reader-text">%1$s</span></span></button>',
 		esc_html__( 'Show secondary sidebar', 'bayleaf' )
-	); // WPCS xss ok.
+	); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	echo '<div id="header-widget-area" class="header-widget-area">';
 	if ( is_active_sidebar( 'sidebar' ) ) {
 		bayleaf_widgets(
@@ -327,7 +329,8 @@ function bayleaf_page_header() {
 function bayleaf_blog_title() {
 	if ( is_home() ) {
 		printf(
-			'<div class="title-wrapper wrapper"><div class="blog-title"><span class="bt-1">%s</span><span class="bt-2">%s</span></div></div>', esc_html__( 'Latest from', 'bayleaf' ),
+			'<div class="title-wrapper wrapper"><div class="blog-title"><span class="bt-1">%s</span><span class="bt-2">%s</span></div></div>',
+			esc_html__( 'Latest from', 'bayleaf' ),
 			esc_html__( 'The Blog', 'bayleaf' )
 		);
 	}
@@ -362,12 +365,16 @@ function bayleaf_comments_toggle() {
 	}
 
 	if ( $text ) {
-		$toggle_text = sprintf( '<span class="toggle-text">%s</span>', $text ); // WPCS xss ok.
-		printf( '<button class="comments-toggle">%1$s%2$s%3$s</button>',
-			$toggle_text,
-			bayleaf_get_icon( [ 'icon' => 'angle-down' ] ),
-			bayleaf_get_icon( [ 'icon' => 'angle-up' ] )
-		); // WPCS xss ok. Variables already escaped.
+		$toggle_text = sprintf(
+			'<span class="toggle-text">%s</span>',
+			$text // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		);
+		printf(
+			'<button class="comments-toggle">%1$s%2$s%3$s</button>',
+			$toggle_text, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			bayleaf_get_icon( [ 'icon' => 'angle-down' ] ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			bayleaf_get_icon( [ 'icon' => 'angle-up' ] ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		);
 	}
 }
 
@@ -574,12 +581,14 @@ function bayleaf_post_pagination() {
 		return;
 	}
 
-	the_posts_pagination( array(
-		'mid_size'           => 2,
-		'prev_text'          => '<span class="screen-reader-text">' . esc_html__( 'Previous', 'bayleaf' ) . '</span>' . bayleaf_get_icon( array( 'icon' => 'angle-left' ) ) . '<span class="post-pagi">' . esc_html__( 'Previous', 'bayleaf' ) . '</span>',
-		'next_text'          => '<span class="screen-reader-text show-on-mobile">' . esc_html__( 'Next', 'bayleaf' ) . '</span><span class="post-pagi">' . esc_html__( 'Next', 'bayleaf' ) . '</span>' . bayleaf_get_icon( array( 'icon' => 'angle-right' ) ),
-		'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Page', 'bayleaf' ) . ' </span>',
-	) );
+	the_posts_pagination(
+		[
+			'mid_size'           => 2,
+			'prev_text'          => '<span class="screen-reader-text">' . esc_html__( 'Previous', 'bayleaf' ) . '</span>' . bayleaf_get_icon( array( 'icon' => 'angle-left' ) ) . '<span class="post-pagi">' . esc_html__( 'Previous', 'bayleaf' ) . '</span>',
+			'next_text'          => '<span class="screen-reader-text show-on-mobile">' . esc_html__( 'Next', 'bayleaf' ) . '</span><span class="post-pagi">' . esc_html__( 'Next', 'bayleaf' ) . '</span>' . bayleaf_get_icon( array( 'icon' => 'angle-right' ) ),
+			'before_page_number' => '<span class="meta-nav screen-reader-text">' . esc_html__( 'Page', 'bayleaf' ) . ' </span>',
+		]
+	);
 }
 
 /**
@@ -592,10 +601,12 @@ function bayleaf_post_navigation() {
 		return;
 	}
 
-	the_post_navigation( array(
-		'next_text' => '<span class="nav-text">' . esc_html__( 'Next Post ', 'bayleaf' ) . '</span><span class="post-title screen-reader-text">%title</span>',
-		'prev_text' => '<span class="nav-text">' . esc_html__( ' Previous Post', 'bayleaf' ) . '</span><span class="post-title screen-reader-text">%title</span>',
-	) );
+	the_post_navigation(
+		[
+			'next_text' => '<span class="nav-text">' . esc_html__( 'Next Post ', 'bayleaf' ) . '</span><span class="post-title screen-reader-text">%title</span>',
+			'prev_text' => '<span class="nav-text">' . esc_html__( ' Previous Post', 'bayleaf' ) . '</span><span class="post-title screen-reader-text">%title</span>',
+		]
+	);
 }
 
 /**
@@ -654,9 +665,9 @@ function bayleaf_footer_items() {
 function bayleaf_scroll_to_top() {
 	printf(
 		'<button class="scrl-to-top">%1$s<span class="screen-reader-text">%2$s</span></button>',
-		bayleaf_get_icon( [ 'icon' => 'arrow-up' ] ),
+		bayleaf_get_icon( [ 'icon' => 'arrow-up' ] ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		esc_html__( 'Scroll to top of the page', 'bayleaf' )
-	); // WPCS xss ok.
+	);
 }
 
 /**
@@ -679,7 +690,7 @@ function bayleaf_footer_text() {
 	$output = str_replace( '[site_title]', get_bloginfo( 'name', 'display' ), $output );
 	$output = str_replace( '[copy_symbol]', '&copy;', $output );
 
-	printf( '<div class="footer-text">%1$s</div>', $output ); // WPCS xss ok. Contains HTML, other values escaped.
+	printf( '<div class="footer-text">%1$s</div>', $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**

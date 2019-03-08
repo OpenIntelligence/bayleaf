@@ -127,7 +127,8 @@ add_filter( 'bayleaf_get_attr_site_footer', 'bayleaf_site_footer_classes' );
  * @return array
  */
 function bayleaf_custom_image_sizes_to_admin( $size_names ) {
-	return array_merge( $size_names,
+	return array_merge(
+		$size_names,
 		[
 			'bayleaf-small'  => esc_html__( 'Bayleaf Small', 'bayleaf' ),
 			'bayleaf-medium' => esc_html__( 'Bayleaf Medium', 'bayleaf' ),
@@ -154,7 +155,8 @@ function bayleaf_color_scheme_css( $css ) {
 
 	$rgb_color = bayleaf_hex_to_rgb( $color, true );
 
-	$css .= sprintf( '
+	$css .= sprintf(
+		'
 		a,
 		.social-navigation ul.nav-menu--social a:hover,
 		.social-navigation ul.nav-menu--social a:focus,
@@ -206,7 +208,10 @@ function bayleaf_color_scheme_css( $css ) {
 		.slider1 .sub-entry {
 			background-color: rgba( %2$s, 0.8 );
 		}
-	', $color, $rgb_color );
+		',
+		$color,
+		$rgb_color
+	);
 
 	return $css;
 }
@@ -227,7 +232,8 @@ function bayleaf_editor_color_scheme_css( $css ) {
 		return $css;
 	}
 
-	$css .= sprintf( '
+	$css .= sprintf(
+		'
 		a,
 		.editor-rich-text__tinymce a,
 		.wp-block-freeform.block-library-rich-text__tinymce a {
@@ -237,7 +243,9 @@ function bayleaf_editor_color_scheme_css( $css ) {
 		.wp-block-freeform.block-library-rich-text__tinymce a.button {
 			background-color: %1$s;
 		}
-	', $color );
+		',
+		$color
+	);
 
 	return $css;
 }

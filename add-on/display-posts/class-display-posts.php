@@ -343,7 +343,8 @@ class Display_Posts {
 	 */
 	public function date() {
 
-		printf( '<div class="dp-date"><time datetime="%s">%s</time></div>',
+		printf(
+			'<div class="dp-date"><time datetime="%s">%s</time></div>',
 			esc_attr( get_the_date( DATE_W3C ) ),
 			esc_html( get_the_date( 'M j, Y' ) )
 		);
@@ -356,11 +357,13 @@ class Display_Posts {
 	 */
 	public function ago() {
 
-		/* translators: %s: human-readable time difference */
-		$time = sprintf( esc_html_x( '%s ago', 'human-readable time difference', 'bayleaf' ),
-		esc_html( human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) ) );
+		$time = sprintf(
+			/* translators: %s: human-readable time difference */
+			esc_html_x( '%s ago', 'human-readable time difference', 'bayleaf' ),
+			esc_html( human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) )
+		);
 
-		printf( '<div class="dp-date">%s</div>', $time ); // WPCS xss ok. Variable escaped properly.
+		printf( '<div class="dp-date">%s</div>', $time ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -370,7 +373,8 @@ class Display_Posts {
 	 */
 	public function author() {
 
-		printf( '<div class="dp-author"><a href="%s"><span>%s</span></a></div>',
+		printf(
+			'<div class="dp-author"><a href="%s"><span>%s</span></a></div>',
 			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 			esc_html( get_the_author_meta( 'display_name' ) )
 		);
@@ -449,9 +453,6 @@ class Display_Posts {
 
 		$text = get_the_content( '' );
 		$text = wp_strip_all_tags( strip_shortcodes( $text ) );
-
-		/** This filter is documented in wp-includes/post-template.php */
-		$text = apply_filters( 'the_content', $text );
 		$text = str_replace( ']]>', ']]&gt;', $text );
 
 		/**
@@ -486,7 +487,7 @@ class Display_Posts {
 		$excerpt_more = apply_filters( 'bayleaf_dp_excerpt_more', ' ' . $excerpt_teaser, $style );
 		$text         = wp_trim_words( $text, $excerpt_length, $excerpt_more );
 
-		printf( '<div class="dp-excerpt">%s</div>', $text ); // WPCS xss ok.
+		printf( '<div class="dp-excerpt">%s</div>', $text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -562,9 +563,9 @@ class Display_Posts {
 		);
 
 		if ( 'slider2' === $instance['styles'] ) {
-			echo $navigation; // WPCS xss ok. Contains HTML, other values escaped.
+			echo $navigation; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
-			printf( '<div class="dp-slide-navigate">%s</div>', $navigation ); // WPCS xss ok. Contains HTML, other values escaped.
+			printf( '<div class="dp-slide-navigate">%s</div>', $navigation ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 

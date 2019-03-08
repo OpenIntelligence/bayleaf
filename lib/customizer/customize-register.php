@@ -147,7 +147,8 @@ function bayleaf_customize_register( $wp_customize ) {
 		// Adds theme settings that can be customized using the Theme Customization API.
 		if ( isset( $control['settings'] ) ) {
 			foreach ( (array) $control['settings'] as $key => $setting ) {
-				$wp_customize->add_setting( $setting,
+				$wp_customize->add_setting(
+					$setting,
 					[
 						'default'           => bayleaf_get_default_value( $setting ),
 						'sanitize_callback' => 'bayleaf_sanitization',
@@ -156,7 +157,8 @@ function bayleaf_customize_register( $wp_customize ) {
 				);
 			}
 		} else {
-			$wp_customize->add_setting( $control['setting'],
+			$wp_customize->add_setting(
+				$control['setting'],
 				[
 					'default'           => bayleaf_get_default_value( $control['setting'] ),
 					'sanitize_callback' => 'bayleaf_sanitization',
@@ -276,7 +278,7 @@ function bayleaf_sanitization( $option, $setting ) {
 			break;
 
 		case 'checkbox':
-			$sanitized_value = ( 1 == $option ) ? 1 : '';
+			$sanitized_value = $option ? 1 : '';
 			break;
 
 		case 'number':

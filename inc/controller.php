@@ -17,7 +17,8 @@
  * @return array Returns array of theme customizer panels.
  */
 function bayleaf_get_theme_panels( $panels = [] ) {
-	return array_merge( $panels,
+	return array_merge(
+		$panels,
 		[
 			'bayleaf_theme_panel' =>
 			[
@@ -39,9 +40,10 @@ add_filter( 'bayleaf_theme_panels', 'bayleaf_get_theme_panels' );
  * @return array Returns array of theme customizer sections.
  */
 function bayleaf_get_theme_sections( $sections = [] ) {
-	return array_merge( $sections,
+	return array_merge(
+		$sections,
 		[
-			'bayleaf_general_section'   =>
+			'bayleaf_general_section' =>
 			[
 				'title' => esc_html__( 'General Settings', 'bayleaf' ),
 				'panel' => 'bayleaf_theme_panel',
@@ -60,7 +62,8 @@ add_filter( 'bayleaf_theme_sections', 'bayleaf_get_theme_sections' );
  * @return array Returns array of theme controls and settings.
  */
 function bayleaf_get_theme_controls( $controls = [] ) {
-	return array_merge( $controls,
+	return array_merge(
+		$controls,
 		[
 			[
 				'label'     => esc_html__( 'Display Site Title', 'bayleaf' ),
@@ -129,14 +132,17 @@ add_filter( 'bayleaf_theme_controls', 'bayleaf_get_theme_controls' );
  * @return array Returns Array of customizer option default values.
  */
 function bayleaf_get_theme_defaults( $defaults = [] ) {
-	return array_merge( $defaults, [
-		'bayleaf_display_site_title'    => 1,
-		'bayleaf_display_site_desc'     => 1,
-		'bayleaf_use_google_fonts'      => 1,
-		'bayleaf_primary_nav'           => 1,
-		'bayleaf_related_posts'         => 1,
-		'bayleaf_thumbnail_placeholder' => 1,
-		'bayleaf_footer_text'           => '[site_title] [copy_symbol] [current_year] &middot; ' . esc_html__( 'All rights reserved', 'bayleaf' ), // Note: Translation friendly instructions for using footer text placeholders has been given in customizer control description.
-	] );
+	return array_merge(
+		$defaults,
+		[
+			'bayleaf_display_site_title'    => 1,
+			'bayleaf_display_site_desc'     => 1,
+			'bayleaf_use_google_fonts'      => 1,
+			'bayleaf_primary_nav'           => 1,
+			'bayleaf_related_posts'         => 1,
+			'bayleaf_thumbnail_placeholder' => 1,
+			'bayleaf_footer_text'           => '[site_title] [copy_symbol] [current_year] &middot; ' . esc_html__( 'All rights reserved', 'bayleaf' ), // Note: Translation friendly instructions for using footer text placeholders has been given in customizer control description.
+		]
+	);
 }
 add_filter( 'bayleaf_theme_defaults', 'bayleaf_get_theme_defaults' );

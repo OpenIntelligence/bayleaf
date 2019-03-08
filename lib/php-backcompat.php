@@ -40,7 +40,7 @@ function bayleaf_upgrade_notice() {
 		esc_html__( 'Bayleaf requires at least PHP version 5.4. You are running version %s. Please upgrade and try again.', 'bayleaf' ),
 		PHP_VERSION
 	);
-	printf( '<div class="error"><p>%s</p></div>', $message ); // WPCS xss ok.
+	printf( '<div class="error"><p>%s</p></div>', $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -59,7 +59,7 @@ function bayleaf_prevent_customize_load() {
 		),
 		'',
 		array( 'back_link' => true )
-	); // WPCS xss ok. 'PHP_VERSION' is a Predefined Constant.
+	); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 add_action( 'load-customize.php', 'bayleaf_prevent_customize_load' );
 
@@ -78,7 +78,7 @@ function bayleaf_prevent_preview() {
 				esc_html__( 'bayleaf requires at least PHP version 5.4. You are running version %s. Please upgrade and try again.', 'bayleaf' ),
 				PHP_VERSION
 			)
-		); // WPCS xss ok. 'PHP_VERSION' is a Predefined Constant.
+		); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 add_action( 'template_redirect', 'bayleaf_prevent_preview' );

@@ -171,7 +171,7 @@ class Plugins_Compat {
 	public function display_dp_item( $item ) {
 		switch ( $item ) {
 			case 'event-time':
-				echo tribe_events_event_schedule_details( null, '<div class="dp-categories"', '</div>' ); // WPCS xss ok. Plugin's display safe function.
+				echo tribe_events_event_schedule_details( null, '<div class="dp-categories"', '</div>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				break;
 			default:
 				break;
@@ -224,7 +224,8 @@ class Plugins_Compat {
 	 */
 	public function widget_options( $options ) {
 
-		return array_merge( $options,
+		return array_merge(
+			$options,
 			[
 				'bayleaf_widget_featured_image' => [
 					'setting' => 'bayleaf_widget_featured_image',

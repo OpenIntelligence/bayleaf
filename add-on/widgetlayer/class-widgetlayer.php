@@ -103,7 +103,8 @@ class WidgetLayer {
 			true
 		);
 		// Theme localize scripts data.
-		$l10n = apply_filters( 'bayleaf_localize_script_data',
+		$l10n = apply_filters(
+			'bayleaf_localize_script_data',
 			[
 				'uploader_title'       => esc_html__( 'Set Image', 'bayleaf' ),
 				'uploader_button_text' => esc_html__( 'Select', 'bayleaf' ),
@@ -364,7 +365,8 @@ class WidgetLayer {
 			return $this->widget_options;
 		}
 
-		$this->widget_options = apply_filters( 'bayleaf_widgetlayer_widget_options',
+		$this->widget_options = apply_filters(
+			'bayleaf_widgetlayer_widget_options',
 			[
 				'bayleaf_text_widget_title' => [
 					'setting' => 'bayleaf_text_widget_title',
@@ -473,7 +475,8 @@ class WidgetLayer {
 			$id          = esc_attr( $widget->get_field_id( $setting ) );
 			$name        = esc_attr( $widget->get_field_name( $setting ) );
 			$instance    = wp_parse_args( $instance, [ $setting => '' ] );
-			$value       = wp_parse_args( $value,
+			$value       = wp_parse_args(
+				$value,
 				[
 					'default'        => '',
 					'description'    => '',
@@ -505,7 +508,8 @@ class WidgetLayer {
 					$field .= sprintf( '<select name="%s" id="%s">', $name, $id );
 					$field .= sprintf( '<option value="">%s</option>', $value['default'] );
 					foreach ( $value['choices'] as $val => $label ) {
-						$field .= sprintf( '<option value="%s" %s>%s</option>',
+						$field .= sprintf(
+							'<option value="%s" %s>%s</option>',
 							esc_attr( $val ),
 							selected( $instance[ $setting ], $val, false ),
 							$label
@@ -561,7 +565,7 @@ class WidgetLayer {
 			$content = sprintf( '<div class="widget-options-content">%s</div>', implode( '', $fields['basic'] ) );
 
 			// Display Widget Options.
-			printf( '<div class="widget-options-section">%s%s</div>', $title, $content ); // WPCS xss ok. Contains HTML, other values escaped.
+			printf( '<div class="widget-options-section">%s%s</div>', $title, $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -724,7 +728,7 @@ class WidgetLayer {
 		$inline_css = $this->get_widget_css( $widget_data );
 		$inline_css = $this->widget_css_array_to_string( $inline_css );
 		if ( $inline_css ) {
-			echo '<style>' . $inline_css . '</style>'; // WPCS xss ok. CSS with strip all tags.
+			echo '<style>' . $inline_css . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $params;

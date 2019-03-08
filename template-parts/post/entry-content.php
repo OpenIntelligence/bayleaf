@@ -6,11 +6,13 @@
  * @since 1.0.0
  */
 
-the_content( sprintf(
-	/* translators: %s: Name of current post */
-	esc_html__( 'Continue reading %s', 'bayleaf' ),
-	the_title( '<span class="screen-reader-text">', '</span>', false )
-) );
+the_content(
+	sprintf(
+		/* translators: %s: Name of current post */
+		esc_html__( 'Continue reading %s', 'bayleaf' ),
+		the_title( '<span class="screen-reader-text">', '</span>', false )
+	)
+);
 
 wp_link_pages(
 	[

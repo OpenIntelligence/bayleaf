@@ -44,7 +44,7 @@ class Blank_Widget extends \WP_Widget {
 	 * @param array $instance Settings for the current widget instance.
 	 */
 	public function widget( $args, $instance ) {
-		echo $args['before_widget'] . $args['after_widget']; // WPCS xss ok. Contains HTML.
+		echo $args['before_widget'] . $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**

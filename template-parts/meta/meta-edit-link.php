@@ -12,5 +12,6 @@ edit_post_link(
 		__( 'Edit<span class="screen-reader-text"> "%s"</span>', 'bayleaf' ),
 		get_the_title()
 	),
-	'<span' . bayleaf_get_attr( 'meta-edit-link' ) . '>', '</span>'
+	'<span' . bayleaf_get_attr( 'meta-edit-link' ) . '>',
+	'</span>'
 );

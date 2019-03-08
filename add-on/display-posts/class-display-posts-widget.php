@@ -110,10 +110,10 @@ class Display_Posts_Widget extends \WP_Widget {
 
 		$after_title = apply_filters( 'bayleaf_after_dp_widget_title', $args['after_title'], $instance );
 
-		echo $args['before_widget']; // WPCS xss ok. Contains HTML.
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( $title ) {
-			echo $args['before_title'] . $title . $after_title; // WPCS xss ok. Contains HTML.
+			echo $args['before_title'] . $title . $after_title; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		// Prepare the query.
@@ -163,7 +163,7 @@ class Display_Posts_Widget extends \WP_Widget {
 				'query'    => $post_query,
 			];
 			?>
-			<div class="dp-wrapper <?php echo join( ' ', $wrapper_class ); // WPCS xss ok. Value escaped. ?>">
+			<div class="dp-wrapper <?php echo join( ' ', $wrapper_class ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 
 			<?php
 			/**
@@ -180,10 +180,10 @@ class Display_Posts_Widget extends \WP_Widget {
 				$entry_class = apply_filters( 'bayleaf_dp_entry_classes', [], $instance, $this );
 				$entry_class = array_map( 'esc_attr', $entry_class );
 				?>
-				<div class="dp-entry <?php echo join( ' ', $entry_class ); // WPCS xss ok. Value escaped. ?>">
+				<div class="dp-entry <?php echo join( ' ', $entry_class ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 					<?php do_action( 'bayleaf_dp_entry', $args, $instance, $this ); ?>
 				</div><!-- .dp-entry -->
-			<?php
+				<?php
 			endwhile;
 
 			/**
@@ -203,7 +203,7 @@ class Display_Posts_Widget extends \WP_Widget {
 			wp_reset_postdata();
 		endif;
 
-		echo $args['after_widget']; // WPCS xss ok. Contains HTML.
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -290,10 +290,6 @@ class Display_Posts_Widget extends \WP_Widget {
 		<?php
 		$hide_grid_columns = true;
 
-		// Let's work with default three column grid layout for time being.
-		/* if ( $instance['post_type'] && ( false !== strpos( $instance['styles'], 'grid' ) ) ) {
-			$hide_grid_columns = false;
-		} */
 		?>
 		<div class="posts-styles-grid" <?php echo $hide_grid_columns ? ' style="display:none;"' : ''; ?>>
 			<?php
@@ -380,13 +376,6 @@ class Display_Posts_Widget extends \WP_Widget {
 
 		$valid_styles       = apply_filters( 'bayleaf_dp_styles', '', $new_instance );
 		$instance['styles'] = array_key_exists( $new_instance['styles'], $valid_styles ) ? $new_instance['styles'] : '';
-
-		/* if ( $instance['styles'] && ( false !== strpos( $instance['styles'], 'grid' ) ) ) {
-			$columns                  = absint( $new_instance['grid_columns'] );
-			$instance['grid_columns'] = in_array( $columns, [ 1, 2, 3, 4 ], true ) ? $columns : 1;
-		} else {
-			$instance['grid_columns'] = 1;
-		} */
 
 		return $instance;
 	}
@@ -482,7 +471,7 @@ class Display_Posts_Widget extends \WP_Widget {
 	public function label( $for, $text, $echo = true ) {
 		$label = sprintf( '<label for="%s">%s:</label>', esc_attr( $this->get_field_id( $for ) ), esc_html( $text ) );
 		if ( $echo ) {
-			echo $label; // WPCS xss ok. Contains HTML. Other values escaped.
+			echo $label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $label;
 		}
@@ -510,7 +499,8 @@ class Display_Posts_Widget extends \WP_Widget {
 			$select .= sprintf( '<option value="%1$s" %2$s %3$s>%4$s</option>', esc_attr( $value ), $final_class, selected( $value, $selected, false ), esc_html( $label ) );
 		}
 
-		$select = sprintf( '<select id="%1$s" name="%2$s" class="bayleaf-%3$s widefat">%4$s</select>',
+		$select = sprintf(
+			'<select id="%1$s" name="%2$s" class="bayleaf-%3$s widefat">%4$s</select>',
 			esc_attr( $this->get_field_id( $for ) ),
 			esc_attr( $this->get_field_name( $for ) ),
 			esc_attr( str_replace( '_', '-', $for ) ),
@@ -518,7 +508,7 @@ class Display_Posts_Widget extends \WP_Widget {
 		);
 
 		if ( $echo ) {
-			echo $select; // WPCS xss ok. Contains HTML. Other values escaped.
+			echo $select; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $select;
 		}
@@ -559,7 +549,7 @@ class Display_Posts_Widget extends \WP_Widget {
 		$mu_checkbox .= "</ul></div>\n";
 
 		if ( $echo ) {
-			echo $mu_checkbox; // WPCS xss ok. Contains HTML. Other values escaped.
+			echo $mu_checkbox; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $mu_checkbox;
 		}

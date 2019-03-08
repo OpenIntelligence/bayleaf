@@ -35,7 +35,7 @@ if ( post_password_required() ) {
 	<div id="comments"<?php bayleaf_attr( 'comments-area' ); ?>>
 	<?php
 	if ( have_comments() ) :
-	?>
+		?>
 		<h2<?php bayleaf_attr( 'comments-title' ); ?>>
 			<?php
 			$bayleaf_comments_number = get_comments_number();
@@ -43,20 +43,22 @@ if ( post_password_required() ) {
 				printf(
 					/* translators: %s: post title */
 					esc_html_x( 'One comment on &ldquo;%s&rdquo;', 'comments title', 'bayleaf' ),
-					'<span>' . get_the_title() . '</span>'
+					'<span>' . get_the_title() . '</span>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			} else {
-				printf( // WPCS: XSS OK.
-					/* translators: 1: number of comments, 2: post title */
-					esc_html( _nx(
-						'%1$s comment on &ldquo;%2$s&rdquo;',
-						'%1$s comments on &ldquo;%2$s&rdquo;',
-						$bayleaf_comments_number,
-						'comments title',
-						'bayleaf'
-					) ),
+				printf(
+					esc_html(
+						/* translators: 1: number of comments, 2: post title */
+						_nx(
+							'%1$s comment on &ldquo;%2$s&rdquo;',
+							'%1$s comments on &ldquo;%2$s&rdquo;',
+							$bayleaf_comments_number,
+							'comments title',
+							'bayleaf'
+						)
+					),
 					esc_html( number_format_i18n( $bayleaf_comments_number ) ),
-					'<span>' . get_the_title() . '</span>'
+					'<span>' . get_the_title() . '</span>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 			?>
@@ -83,9 +85,9 @@ if ( post_password_required() ) {
 		the_comments_navigation();
 
 		if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
-		?>
+			?>
 			<p<?php bayleaf_attr( 'no-comments' ); ?>><?php esc_html_e( 'Comments are closed.', 'bayleaf' ); ?></p>
-		<?php
+			<?php
 		endif;
 
 	endif; // Check for have_comments().
