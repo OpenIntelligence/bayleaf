@@ -1,0 +1,118 @@
+.widgetlayer {
+	margin: 0 auto;
+	flex-wrap: wrap;
+	justify-content: center;
+	border-bottom: 1px solid $divider-color;
+	padding-top: mrem(2);
+	@media only screen and (min-width: $tablet) {
+		padding-top: mrem();
+		padding-bottom: mrem();
+		.brick {
+			margin: 0;
+			padding-top: mrem(0.5);
+			padding-bottom: mrem(0.5);
+		}
+	}
+	.widget-title {
+		@include ts(3);
+		margin-bottom: mrem();
+		padding-bottom: mrem(0.5);
+		border-bottom: 1px solid $divider-color;
+	}
+
+	&.footer-widget-area .widget-title {
+		@include ts(4);
+		margin-bottom: mrem(0.75);
+	}
+
+	&,
+	&.footer-widget-area {
+		.only-title .widget-title {
+			margin-bottom: 0;
+		}
+	
+		.display_posts .widget-title,
+		.display_feeds .widget-title {
+			@include ts(3);
+		}
+
+		.widget_text .widget-title {
+			margin-bottom: mrem();
+			padding-bottom: 0;
+			border-bottom-width: 0;
+		}
+	
+		.lg-title .widget-title {
+			@include ts(2);
+			&.widget-title {
+				line-height: 1.2;
+			}
+		}
+	
+		.sm-title .widget-title {
+			@include ts(4);
+		}
+	}
+	.brick {
+		@media only screen and (min-width: $tablet__rotate) {
+			.js & {
+				&,
+				.dp-grid > .dp-entry,
+				.podcast-details,
+				.podcast-feeds {
+					opacity: 0;
+					transition: opacity 1s ease, transform 1s ease;
+				}
+				&.posts-grid,
+				&.display_feeds {
+					opacity: 1;
+				}
+				&.display_posts,
+				&.woo_products {
+					transform: scale(0.98);
+				}
+				.podcast-feeds {
+					transform: translateX(#{mrem(2)});
+				}
+				.podcast-details {
+					transform: translateX(#{mrem(-1)});
+				}
+			}
+			.js &.fadeInUp {
+				&,
+				.dp-grid > .dp-entry,
+				.podcast-details,
+				.podcast-feeds {
+					opacity: 1;
+					transform: none;
+				}
+			}
+		}
+	}
+}
+
+.has-ww-line,
+.has-fb-line {
+	position: relative;
+	&:after {
+		@media only screen and (min-width: $tablet) {
+			display: block;
+			content: '';
+			width: 100vw;
+			height: 1px;
+			background-color: $divider-color;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+}
+
+.has-ww-line {
+	&:after {
+		@media only screen and (min-width: $tablet) {
+			width: calc( 100% - #{mrem()} );
+		}
+	}
+}

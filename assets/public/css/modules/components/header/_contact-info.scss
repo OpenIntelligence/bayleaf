@@ -1,0 +1,43 @@
+.social-navigation {
+	position: relative;
+	color: currentColor;
+	display: inline-block;
+	@media only screen and (min-width: $mobile) {
+		margin-left: auto;
+		display: block;
+	}
+	ul.nav-menu--social {
+		padding-left: 0;
+		padding-right: 0;
+		margin: 0 mrem(-0.5);
+		list-style: none;
+		li {
+			display: inline-block;
+			margin-top: 0;
+			padding: 0.2625em 0;
+			border-top-width: 0;
+			@media only screen and (min-width: $mobile) {
+				&:last-child a {
+					margin-right: 0;
+				}
+			}
+		}
+		a {
+			display: block;
+			color: $primary-text-color;
+			background-color: transparent;
+			line-height: 1;
+			padding: mem(0.35) mem(0.5);
+			text-decoration: none;
+			.icon {
+				width: 16px;
+				height: 16px;
+				margin-right: 0;
+			}
+			&:hover,
+			&:focus {
+				color: $accent-color;
+			}
+		}
+	}
+}

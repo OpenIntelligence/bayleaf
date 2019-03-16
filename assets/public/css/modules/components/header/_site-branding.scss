@@ -1,0 +1,82 @@
+.site-branding {
+	display: flex;
+	align-items: center;
+	position: relative;
+	left: -1px;
+	@media only screen and (min-width: $tablet__rotate) {
+		margin-right: 0;
+	}
+}
+
+.custom-logo-link img {
+	height: 32px;
+	padding: 5px 0;
+	width: auto;
+	margin-right: mrem(0.4);
+	@media only screen and (min-width: $mobile) {
+		height: 56px;
+	}
+}
+
+.title-area {
+	display: flex;
+	align-items: center;
+}
+
+.site-title {
+	@include ts(3);
+	line-height: 1;
+	font-weight: $bold-font-weight;
+	margin-bottom: 0;
+	@media only screen and (min-width: $tablet__rotate) {
+		@include ts(2);
+	}
+	a {
+		display: inline-block;
+		color: $primary-text-color;
+		&:focus,
+		&:hover {
+			opacity: 0.7;
+			text-decoration: none;
+		}
+	}
+}
+
+.site-description {
+	@include ts(3);
+	margin-bottom: 0;
+	margin-top: 0;
+	position: absolute;
+	bottom: 0;
+	height: auto;
+	color: $base-color;
+	font-weight: bold;
+	width: calc( 100% - 40px );
+	padding: mrem(0.5);
+	font-family: $title-font-family;
+	@media only screen and (min-width: $tablet) {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		height: 100%;
+		overflow: hidden;
+		padding: mrem();
+		border-radius: 8px 0 0 8px;
+		@include ts(2);
+		.site-desc {
+			opacity: 0;
+			animation: fadeinup 1s ease-in-out;
+			animation-fill-mode: both;
+		}
+	}
+	@media only screen and (min-width: $tablet__rotate) {
+		font-size: $ts2 * 1rem;
+		line-height: 1.3;
+	}
+	@media only screen and (min-width: $laptop) {
+		top: 0;
+		font-size: $ts1 * 1rem;
+		padding: mrem(2);
+	}
+}

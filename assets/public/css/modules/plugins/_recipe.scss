@@ -1,0 +1,50 @@
+.wprm-recipe-template-compact.wprm-recipe-template-compact {
+	border-width: 0;
+	border-radius: 8px;
+	padding: mem();
+	margin: 0 0 mrem();
+	max-width: none;
+	@include ts(5);
+	@include mdShadow(1);
+	&,
+	& li {
+		font-family: $body-font-family;
+	}
+	.wprm-recipe-name {
+		font-family: $title-font-family;
+		@include ts(2);
+		margin-bottom: mem(0.25) !important;
+	}
+	.wprm-recipe-header {
+		font-family: $title-font-family;
+		@include ts(3);
+		margin-top: mrem() !important;
+		margin-bottom: mrem(0.75) !important;
+	}
+	.wprm-recipe-ingredient-group-name,
+	.wprm-recipe-instruction-group-name {
+		margin-bottom: 0.8em !important;
+	}
+	.wprm-container-float-right {
+		margin: 0 0 10px 20px;
+	}
+	.wprm-container-float-left {
+		margin: 0 20px 10px 0;
+	}
+	.wprm-recipe-details-container-table {
+		width: 100%;
+		clear: both;
+	}
+}
+
+.singular-view:not(.woocommerce-page) .entry-content a.wprm-recipe-link {
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: none;
+	border-radius: 8px !important;
+	&:hover,
+	&:focus {
+		box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+	}
+}

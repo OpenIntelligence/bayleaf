@@ -1,0 +1,37 @@
+.shadow-1 {
+	@include mdShadow(1);
+}
+
+.shadow-2 {
+	@include mdShadow(2);
+}
+
+.shadow-3 {
+	@include mdShadow(3);
+}
+
+.shadow-4 {
+	@include mdShadow(4);
+}
+
+.no-scroll {
+	position: fixed;
+	overflow: scroll;
+	width: 100%;
+	&.admin-bar {
+		padding-top: 46px;
+		@media only screen and (min-width: 782px) {
+			padding-top: 32px;
+		}
+	}
+}
+
+.italic {
+	font-style: italic;
+}
+
+h3.related-posts-title {
+	margin-bottom: mrem();
+	padding-bottom: mrem(0.5);
+	border-bottom: 1px solid $divider-color;
+}

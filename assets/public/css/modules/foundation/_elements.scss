@@ -1,0 +1,271 @@
+/**
+* #.# Elements
+*
+* Styles for Core HTML elements.
+*/
+
+html {
+	// Fluid Typography (https://css-tricks.com/snippets/css/fluid-typography/)
+	font-size: calc( 16px + 3 * ((100vw - 320px) / 1360));
+}
+
+.ios-device * {
+	cursor: pointer;
+}
+
+body {
+	margin: 0;
+	opacity: 0;
+	font-size: 1rem;
+	line-height: $line__height;
+	font-weight: normal;
+	font-family: $body-font-family;
+	word-wrap: break-word;
+	color: $primary-text-color;
+	background-color: $base-color-light;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	& {
+		animation: fadein 0.5s ease-in-out;
+		animation-fill-mode: both;
+	}
+}
+
+/* Headings */
+%h {
+	font-family: $title-font-family;
+	font-weight: $bold-font-weight;
+	margin: 0 0 mrem();
+	color: $heading-text-color;
+	letter-spacing: normal;
+}
+
+h1 {
+	@extend %h;
+	@include ts(1);
+}
+
+h2 {
+	@extend %h;
+	@include ts(2);
+}
+
+h3 {
+	@extend %h;
+	@include ts(3);
+}
+
+h4 {
+	@extend %h;
+	font-size: 1.128em;
+	line-height: lh( 1.128 );
+}
+
+h5 {
+	@extend %h;
+	@include ts(4);
+}
+
+h6 {
+	@extend %h;
+	@include ts(5);
+}
+
+/* Links */
+a {
+	color: $accent-color;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+	&:focus {
+		outline: thin dotted;
+		outline-offset: -0.05em;
+	}
+}
+
+/* Lists */
+ol,
+ul {
+	margin: 0 0 mrem();
+	padding: 0 0 0 1em;
+	ol,
+	ul {
+		@include ts(5);
+		margin: mrem(0.5) 0;
+		padding: 0 0 0 mem();
+	}
+	li {
+		margin-bottom: mrem(0.25);
+	}
+}
+
+/* Misc */
+address,
+p {
+	margin: 0 0 mrem();
+}
+
+hr {
+	overflow: visible;
+	height: 1px;
+	margin-bottom: mrem();
+	border: 0;
+	background-color: $divider-color;
+}
+
+abbr,
+dfn[title],
+acronym {
+	cursor: help;
+	border-bottom: 1px dotted $divider-color;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+mark,
+ins {
+	color: $primary-text-color;
+	background: $base-color-dark;
+}
+
+dl,
+dd {
+	margin: 0 0 mrem();
+}
+
+dt {
+	font-weight: $bold-font-weight;
+}
+
+figure {
+	margin: 0;
+}
+
+/* Code */
+code,
+kbd,
+tt,
+var,
+samp,
+pre {
+	font-family: $code-font-family;
+	@include ts(5);
+}
+
+pre {
+	background-color: $base-color-darker;
+	margin: 0 0 mrem();
+	max-width: 100%;
+	overflow: auto;
+	padding: mem();
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+code {
+	background-color: $base-color-darker;
+	padding: 0.125em 0.25em;
+}
+
+/* Blockquote */
+blockquote {
+	@include ts(3);
+	margin-bottom: mrem();
+	margin-left: 0;
+	margin-top: 0;
+	padding-left: 2.5em;
+	position: relative;
+	color: $secondary-text-color;
+	& > p {
+		margin-bottom: mrem(0.5);
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	cite {
+		display: block;
+		color: $secondary-text-color;
+		@include ts(6);
+		margin-top: mrem(0.25);
+		font-style: normal;
+	}
+	&:before {
+		color: $primary-text-color;
+		content: "\201C";
+		font-family: 'georgia';
+		position: absolute;
+		left: 0;
+		font-size: 50px;
+		width: 30px;
+		top: 0;
+		line-height: 1;
+	}
+}
+
+.wp-block-pullquote {
+	border-top-width: 0;
+	border-bottom-width: 0;
+	padding: 0;
+}
+
+.wp-block-pullquote blockquote,
+blockquote.wp-block-pullquote {
+	border-top: 4px solid currentColor;
+	border-bottom: 4px solid currentColor;
+	color: $secondary-text-color;
+	padding: 3em 0;
+	text-align: center;
+	margin-bottom: 0;
+	margin-right: 0;
+	& > p {
+		@include ts(3);
+	}
+	cite {
+		display: block;
+		color: $secondary-text-color;
+		@include ts(6);
+		margin-top: mrem(0.25);
+		font-style: normal;
+	}
+	&:before {
+		content: none;
+	}
+}
+
+/* Table */
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: mrem();
+	td,
+	th {
+		border-bottom: .1rem solid $divider-color;
+		padding: 0.4em;
+		text-align: left;
+		&:first-child {
+			padding-left: 0;
+		}
+		&:last-child {
+			padding-right: 0
+		}
+	}
+}
+
+p:empty {
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+}
+
+// When splitting video from the content, it leaves p tag with br in it.
+p > br:only-child {
+	display: none;
+}

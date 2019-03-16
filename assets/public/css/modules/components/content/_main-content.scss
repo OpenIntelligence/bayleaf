@@ -1,0 +1,342 @@
+.blog-title {
+	@include ts(3);
+	font-weight: $bold-font-weight;
+	font-family: $title-font-family;
+	padding-bottom: mrem(0.5);
+	margin-bottom: mrem();
+	border-bottom: 1px solid $divider-color;
+	color: $heading-text-color;
+	.bt-2 {
+		margin-left: 6px;
+		color: $secondary-text-color;
+	}
+}
+
+.entry {
+	margin-bottom: mrem(2);
+	&-index-wrapper {
+		border: 1px solid $divider-color;
+		border-radius: 8px;
+		border-top-width: 0;
+		height: 100%;
+		background-color: $base-color;
+		.sticky & {
+			& {
+				position: relative;
+			}
+			&:before,
+			&:after {
+				z-index: -1;
+				position: absolute;
+				content: "";
+				bottom: 15px;
+				left: 10px;
+				width: 50%;
+				top: 80%;
+				max-width:200px;
+				background: #777;
+				box-shadow: 0 15px 10px #777;
+				transform: rotate(-3deg);
+			}
+			&:after {
+				transform: rotate(3deg);
+				right: 10px;
+				left: auto;
+			}
+		}
+	}
+	.index-view &:not( .product ) {
+		@media only screen and (min-width: $mobile) {
+			flex-basis: calc( 50% - 10px );
+			margin: 0 20px mrem() 0;
+			&:nth-of-type(2n) {
+				margin-right: 0;
+			}
+		}
+		@media only screen and (min-width: $tablet) {
+			flex-basis: 50%;
+			margin: 0 0 mrem();
+		}
+	}
+	&-main-content {
+		.index-view & {
+			overflow: hidden;
+			padding: mem();
+		}
+	}
+	&-header {
+		position: relative;
+		.index-view & {
+			.meta-categories {
+				display: block;
+				font-family: $title-font-family;
+				@include ts('e');
+				letter-spacing: 0.125em;
+				margin-bottom: 0;
+			}
+		}
+		&-title-area {
+			margin-bottom: mrem(1.5);
+			.attachment & {
+				text-align: center;
+			}
+			.entry-thumbnail {
+				img {
+					width: 100%;
+					height: auto;
+					margin: 0 auto;
+					border-radius: 8px;
+					@media only screen and (min-width: $tablet__rotate) {
+						width: 1.272 * $line__length;
+						max-width: none;
+						position: relative;
+						left: 50%;
+						transform: translateX(-50%);
+					}
+				}
+			}
+		}
+		&-title {
+			font-family: $title-font-family;
+			font-weight: $bold-font-weight;
+			.index-view & {
+				@include ts(4);
+				margin-bottom: 0;
+				a {
+					color: currentColor;
+					&:hover,
+					&:focus {
+						color: $secondary-text-color;
+					}
+				}
+			}
+			.singular-view & {
+				margin-top: mrem(0.25);
+				margin-bottom: mrem(0.25);
+				@include ts(1);
+				@media only screen and (min-width: $tablet__rotate) {
+					font-weight: 800;
+				}
+			}
+		}
+		@at-root .entry-thumbnail {
+			.singular-view & {
+				text-align: center;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+	&-featured-content {
+		position: relative;
+		background: linear-gradient(45deg, #808080 0%, #b3b3b3 25%, #e6e6e6 100%);
+		width: calc(100% + 2px);
+		margin-left: -1px;
+		border-radius: 8px 8px 0 0;
+		&:after {
+			content: '';
+			display: block;
+			padding-top: 66.66%;
+			width: 100%;
+			position: relative;
+		}
+		.entry-thumbnail {
+			overflow: hidden;
+			border-radius: 8px 8px 0 0;
+			@include fillParent();
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.3s ease-in;
+			}
+			&:after {
+				@include fillParent();
+				content: '';
+				display: block;
+				width: 100%;
+				background: linear-gradient( to right, rgba(0, 0, 0, 0.05) 0%, transparent 5%, transparent 95%, rgba(0, 0, 0, 0.05) 100%);
+			}
+		}
+		a.post-permalink {
+			@include fillParent();
+			z-index: 9;
+			border-radius: 8px 8px 0 0;
+			transition: all 0.25s ease-in;
+			&:focus {
+				outline-offset: 1px;
+				outline-style: solid;
+			}
+		}
+		.quick-action {
+			position: absolute;
+			bottom: -20px;
+			right: 40px;
+			width: 40px;
+			height: 40px;
+			z-index: 10;
+			color: $accent-color;
+			background-color: $base-color;
+			cursor: pointer;
+			@include mdShadow(2);
+			border-radius: 50%;
+			.icon {
+				font-size: 20px;
+				display: block;
+				position: relative;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);	
+				&.icon-play {
+					margin-left: 2px;
+				}			
+			}
+			&:hover {
+				@include mdShadow(11);
+			}
+		}
+		.icon-sticky {
+			position: absolute;
+			color: $base-color;
+			z-index: 9;
+			top: 20px;
+			left: 20px;
+			font-size: 25px;
+		}
+	}
+	&-attachment {
+		margin-bottom: 20px;
+		text-align: center;
+		img {
+			margin-bottom: mrem(0.5);
+		}
+	}
+	&-meta {
+		@include ts(5);
+		letter-spacing: 0.1em;
+		color: $secondary-text-color;
+		.modified-entry-date {
+			display: none;
+		}
+		.meta-author {
+			text-transform: capitalize;
+		}
+	}
+	&-content {
+		.singular-view & {
+			margin-bottom: mrem();
+			&:last-child {
+				margin-bottom: mrem(2);
+			}
+			& > *:last-child {
+				margin-bottom: 0;
+			}
+		}
+		.singular-view:not( .woocommerce-page ) & {
+			a {
+				background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+				transition: 0.15s ease-in;
+				&:hover,
+				&:focus {
+					text-decoration: none;
+					color: $attention-color;
+				}
+				&.wp-playlist-caption {
+					background-image: none;
+				}
+			}
+			a.wp-block-button__link,
+			a.wp-block-button__link:not(.has-text-color) {
+				background-image: none;
+				&:hover,
+				&:focus {
+					text-decoration: none;
+					background-color: $primary-text-color;
+					color: $base-color;
+				}
+			}
+		}
+		.video-container {
+			@include responsiveVideos();
+		}
+		@include clearFix();
+	}
+	
+	&-footer {
+		margin: 0 auto mrem(2);
+		@include ts(6);
+		color: $primary-text-color;
+		clear: both;
+		.meta-categories,
+		.meta-tags {
+			display: block;
+		}
+		.meta-title {
+			display: inline-block;
+			margin-right: 10px;
+		}
+		.attachment & {
+			text-align: center;
+		}
+	}
+}
+
+.sticky {
+	position: relative;
+}
+
+.error404 {
+	.error-404 {
+		max-width: 600px;
+		margin: 0 auto;
+		text-align: center;
+		padding: mrem(2.5) 0 mrem(5);
+	}
+	.content-area {
+		width: 100%;
+	}
+	.page-content {
+		h2 {
+			@include ts(4);
+		}
+	}
+	.search-form {
+		width: 300px;
+		max-width: 100%;
+		margin: 0 auto;
+	}
+}
+
+.page-entry-header {
+	margin-bottom: mrem(1.5);
+	&-items {
+		margin: 0 auto mrem(1.5);
+		.meta-categories {
+			@include ts(5);
+			letter-spacing: 0.125em;
+		}
+		.single-excerpt {
+			color: $secondary-text-color;
+			margin-top: mrem(0.5);
+		}
+		@media only screen and (min-width: $tablet) {
+			max-width: $line__length;
+		}
+		@media only screen and (min-width: $tablet__rotate) {
+			.single & {
+				text-align: center;
+			}
+		}
+	}
+
+	.entry-thumbnail {
+		img {
+			width: 100%;
+			height: auto;
+			max-width: 1.272 * $line__length;
+			margin: 0 auto;
+			border-radius: 8px;
+		}
+	}
+}

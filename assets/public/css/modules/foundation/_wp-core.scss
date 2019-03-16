@@ -1,0 +1,318 @@
+/**
+* #.# WordPress Core
+*
+* Styles for WordPress core and screen reader classes.
+*/
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	position: absolute !important;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	width: 1px;
+	height: 1px;
+	&:focus {
+		@include ts(6);
+		font-weight: $bold-font-weight;
+		z-index: 100000; /* Above WP toolbar. */
+		top: 5px;
+		left: 5px;
+		display: block;
+		clip: auto !important;
+		width: auto;
+		height: auto;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		color: #21759b;
+		border-radius: 3px;
+		background-color: #f1f1f1;
+		box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	}
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex='-1']:focus {
+	outline: 0;
+}
+
+/* Alignment */
+.align {
+	&left {
+		float: left;
+		margin: mrem(0.25) mrem() mrem(0.5) 0;
+	}
+	&right {
+		float: right;
+		margin: mrem(0.25) 0 mrem(0.5) mrem();
+	}
+	&center {
+		clear: both;
+		display: block;
+		margin: 0 auto mrem();
+	}
+	&none {
+		float: none;
+		margin: 0 auto mrem();
+		p & {
+			margin: 0;
+		}
+	}
+}
+
+/* Gallery */
+.gallery {
+	.entry-content & {
+		margin-bottom: mrem();
+		width: 100%;
+	}
+	@include clearFix();
+	&-item {
+		display: block;
+		position: relative;
+		float: left;
+		margin: 0 0 6px;
+		padding: 0 3px;
+		width: 50%;
+		a {
+			&,
+			&:hover,
+			&:focus {
+				box-shadow: none;
+				background: none;
+				display: block;
+				max-width: 100%;
+			}
+		}
+		.gallery-columns-1 & {
+			width: 100%;
+		}
+		.gallery-columns-2 & {
+			width: 50%;
+		}
+		.gallery-columns-3 & {
+			width: 50%;
+			&:nth-of-type(3n) {
+				width: 100%;
+			}
+		}
+		@media only screen and (min-width: $mobile) {
+			width: 33.3333%;
+			.gallery-columns-3 & {
+				&:nth-of-type(3n) {
+					width: 33.3333%;
+				}
+				max-width: 33.3333%;
+			}
+		}
+		@media only screen and (min-width: $tablet) {
+			.gallery-columns-4 & {
+				max-width: 25%;
+			}
+			.gallery-columns-5 & {
+				max-width: 20%;
+			}
+			.gallery-columns-6 & {
+				max-width: 16.6666%;
+			}
+			.gallery-columns-7 & {
+				max-width: 14.28%
+			}
+			.gallery-columns-8 & {
+				max-width: 12.5%
+			}
+			.gallery-columns-9 & {
+				max-width: 11.1111%
+			}
+		}
+		.gallery-icon {
+			position: relative;
+			a {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+			img {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			&:after {
+				content: '';
+				display: block;
+				width: 100%;
+				padding-top: 75%;
+			}
+		}
+		.portrait.gallery-icon {
+			&:after {
+				padding-top: 133%;
+			}
+		}
+	}
+	&-caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(to right, rgba($primary-text-color, 0.6), rgba($primary-text-color, 0.4) 85%);
+		text-align: center;
+		transition: opacity 0.25s ease;
+		padding: mem(0.5);
+		margin: 0 3px;
+		max-height: 50%;
+		overflow: auto;
+		&.wp-caption-text {
+			color: $base-color;
+		}
+		@media only screen and (min-width: $tablet__rotate) {
+			opacity: 0;
+			.gallery-columns-5 &,
+			.gallery-columns-6 &,
+			.gallery-columns-7 &,
+			.gallery-columns-8 &,
+			.gallery-columns-9 & {
+				display: none;
+			}
+		}
+		.gallery-item:hover & {
+			opacity: 1;
+		}
+	}
+
+	.entry-content & {
+		img {
+			display: block;
+			margin: 0;
+		}
+	}
+}
+
+/* Image */
+img {
+	height: auto;
+	max-width: 100%;
+	vertical-align: middle;
+	.entry-content a &,
+	.entry-summary a &,
+	.comment-content a &,
+	.textwidget a & {
+		display: block;
+	}
+	a:hover > &,
+	a:focus > & {
+		opacity: 0.8;
+	}
+}
+
+/* Captions */
+.wp-caption {
+	max-width: 100%;
+	margin-bottom: mrem();
+	img[class*='wp-image-'] {
+		display: block;
+		margin: 0;
+	}
+	&-text {
+		@include ts(6);
+		color: lighten($primary-text-color, 10%);
+		padding-top: mem(0.5);
+	}
+}
+
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object,
+video {
+	margin-bottom: mem();
+	max-width: 100%;
+	vertical-align: middle;
+	p > &,
+	figure & {
+		margin-bottom: 0;
+	}
+}
+
+/* WordPress media elements */
+.wp {
+	.page-content &,
+	.entry-content &,
+	.comment-content & {
+		&-audio {
+			&-shortcode {
+				margin-top: 0;
+				margin-bottom: mem();
+			}
+		}
+	
+		&-video {
+			margin-top: 0;
+			margin-bottom: mem();
+		}
+	
+		&-playlist {
+			&.wp-audio-playlist {
+				margin-top: 0;
+				margin-bottom: mem();
+				padding-bottom: 0;
+			}
+	
+			.wp-playlist-tracks {
+				margin-top: 0;
+			}
+	
+			&-item {
+				.wp-playlist-caption {
+					border-bottom: 0;
+					padding: mem(0.4) 0;
+				}
+				.wp-playlist-item-length {
+					top: mem(0.4);
+				}
+			}
+	
+			&-caption {
+				&:focus {
+					outline: 0;
+				}
+			}
+		}
+	}
+}
+
+/* Smiley */
+.wp-smiley {
+	.page-content &,
+	.entry-content &,
+	.comment-content & {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 0;
+		border: none;
+	}
+}
+
+/* Meta Js */
+.mejs {
+	&-container {
+		.page-content &,
+		.entry-content &,
+		.comment-content & {
+			margin-bottom: mrem();
+		}
+	}
+}

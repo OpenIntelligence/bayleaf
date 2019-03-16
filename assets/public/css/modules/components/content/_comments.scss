@@ -1,0 +1,179 @@
+.comments-area {
+	@include ts(5);
+	width: 100%;
+	.page & {
+		max-width: none;
+	}
+	p.no-comments {
+		margin-bottom: mrem(2);
+	}
+	.js & {
+		display: none;
+	}
+}
+
+.comments-title {
+	@include ts(3);
+}
+
+.comments-list {
+	margin: 0;
+	padding-left: 0;
+	list-style: none;
+	.children {
+		margin: 0 0 mrem();
+		padding-left: mem();
+		list-style: none;
+		@media only screen and (min-width: $desktop__small) {
+			& {
+				padding-left: mem(2);
+			}
+		}
+		.children {
+			@include ts(5);
+			margin: mrem(0.25) 0;
+		}
+	}
+}
+
+.comment-body {
+	padding-left: mrem(2);
+	position: relative;
+	margin-bottom: mrem(2);
+	.pingback & {
+		padding-left: 0;
+	}
+	.reply {
+		@include ts(6);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+}
+
+.comment-meta {
+	margin-bottom: mrem(0.5);
+	&data {
+		@include ts(6);
+		a {
+			color: $secondary-text-color;
+			&:hover,
+			&:focus {
+				color: $accent-color;
+			}
+		}
+	}
+}
+
+.comment-author {
+	a {
+		color: currentColor;
+		&:hover,
+		&:focus {
+			color: $accent-color;
+		}
+	}
+	& > img {
+		position: absolute;
+		left: 0;
+		border-radius: 50%;
+		padding: 3px;
+		border: 1px solid $divider-color;
+	}
+	.bypostauthor & {
+		b.fn {
+			padding: 2px 8px;
+			border-radius: 10px;
+			background-color: $secondary-text-color;
+			color: $base-color;
+		}
+	}
+	.says {
+		display: none;
+	}
+}
+
+.comment-content {
+	margin-bottom: mrem(0.5);
+	@include ts(5);
+	p,
+	h1:first-child,
+	h2:first-child {
+		margin-bottom: mrem(0.3);
+	}
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.comment-respond {
+	margin-bottom: mrem(2);
+	padding: 20px;
+	background-color: $base-color-dark;
+	border: 1px solid $divider-color;
+	border-radius: 8px;
+	p {
+		margin-bottom: mrem(0.5);
+		&.form-submit {
+			margin-bottom: 0;
+			margin-top: mrem();
+		}
+	}
+	.comment-reply-title {
+		@include ts(3);
+		margin-bottom: mrem(0.5);
+	}
+	@media only screen and (min-width: $tablet) {
+		padding: mrem(2);
+	}
+}
+
+.comment-form-cookies-consent {
+	input {
+		float: left;
+		margin: 0 mrem(0.25) mrem(0.25) 0;
+		height: 28px;
+	}
+	label {
+		font-weight: 400;
+	}
+}
+
+@media only screen and (min-width: $tablet) {
+	.comment-form-author,
+	.comment-form-email,
+	.comment-form-url {
+		width: 50%;
+	}
+}
+
+.comments-toggle {
+	margin-bottom: mrem(2);
+	font-size: 1rem;
+	font-weight: $bold-font-weight;
+	color: $primary-text-color;
+	text-transform: capitalize;
+	letter-spacing: 0;
+	width: 100%;
+	&,
+	&:hover,
+	&:focus {
+		border: 1px solid $divider-color;
+		background-color: $base-color-dark;
+	}
+	&:hover,
+	&:focus,
+	&.toggled {
+		@include mdShadow(1);
+	}
+	.icon-angle-up {
+		display: none;
+	}
+	&.toggled {
+		.icon-angle-up {
+			display: inline-block;
+		}
+		.icon-angle-down {
+			display: none;
+		}
+	}
+}

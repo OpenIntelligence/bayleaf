@@ -1,0 +1,20 @@
+.page-header {
+	body:not(.error404) & {
+		margin-bottom: mrem(2);
+		p:last-child {
+			margin-bottom: 0;
+		}
+		h1.page-header-title {
+			margin-bottom: 0;
+		}
+		&-description {
+			margin-left: 5px;
+		}
+		@media only screen and (min-width: $tablet) {
+			padding: 0 mrem(0.5);
+		}
+	}
+	&:not(.screen-reader-text) {
+		width: 100%;
+	}
+}

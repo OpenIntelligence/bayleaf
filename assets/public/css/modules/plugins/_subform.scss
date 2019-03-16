@@ -1,0 +1,25 @@
+.mc4wp-form {
+	padding: 45px 45px 50px;
+	background: rgba(0,0,0,0.04);
+	border-radius: 8px;
+	&-fields {
+		p {
+			margin-bottom: 20px;
+		}
+		input {
+			text-align: center;
+			&[type="submit"] {
+				width: 100%;
+				line-height: initial;
+			}
+			&[name="AGREE_TO_TERMS"] {
+				margin-right: 5px;
+				position: relative;
+				top: -2px;
+			}
+		}
+		label {
+			font-weight: normal;
+		}
+	}
+}

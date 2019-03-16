@@ -1,0 +1,79 @@
+@media print {
+	body {/* Brute force since user agents all print differently. */
+		font-size: 11.25pt;
+		font-family: sans-serif !important;
+		background: none !important;
+	}
+	.header-items,
+	.navigation,
+	.site-navigation,
+	.social-navigation,
+	.sidebar-widget-area,
+	.footer-widget-area,
+	.page-links,
+	.entry-footer,
+	.edit-link,
+	#reply-title,
+	.comment-form,
+	.comment-edit-link,
+	.comment-list .reply a,
+	button,
+	input,
+	textarea,
+	select {
+		display: none;
+	}
+	.site-header,
+	.site-footer,
+	.hentry,
+	.entry-footer,
+	.page-header,
+	.page-content,
+	.comments-area {
+		background: none !important;/* Make sure color schemes dont't affect to print */
+	}
+	body,
+	blockquote,
+	blockquote cite,
+	blockquote small,
+	label,
+	a,
+	.site-title a,
+	.site-description,
+	.post-title,
+	.author-heading,
+	.entry-footer,
+	.entry-footer a,
+	.taxonomy-description,
+	.entry-caption,
+	.comment-author,
+	.comment-metadata,
+	.comment-metadata a,
+	.comment-notes,
+	.comment-awaiting-moderation,
+	.no-comments,
+	.site-info,
+	.site-info a,
+	.wp-caption-text,
+	.gallery-caption {
+		color: #000 !important;/* Make sure color schemes don't affect to print */
+	}
+	pre,
+	abbr[title],
+	table,
+	th,
+	td,
+	.site-header,
+	.site-footer,
+	.hentry + .hentry,
+	.author-info,
+	.page-header,
+	.comments-area,
+	.comment-list + .comment-respond,
+	.comment-list article,
+	.comment-list .pingback,
+	.comment-list .trackback,
+	.no-comments {
+		border-color: #eaeaea !important;/* Make sure color schemes don't affect to print */
+	}
+}

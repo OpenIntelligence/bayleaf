@@ -1,0 +1,38 @@
+/**
+* #.# Font Icons
+*
+* Styling for SVG font icons and fallback style if browser does not support SVG.
+*/
+.icon {
+    position: relative;
+    top: -0.0625em;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    stroke-width: 0;
+    stroke: currentColor;
+	fill: currentColor;
+	@media only screen and (min-width: $tablet__rotate) {
+		.nav-menu .sub-menu & {
+			position: absolute;
+			top: 50%;
+			right: 1em;
+			left: auto;
+			margin-top: -7px;
+			-webkit-transform: rotate(90deg);
+					transform: rotate(90deg);
+		}
+	}
+}
+
+.svg-fallback {
+	display: none;
+	.no-svg & {
+		display: inline-block;
+	}
+}
+
+.icon-sticky {
+	filter: drop-shadow(1px 3px 2px rgba(0,0,0,0.8));
+}

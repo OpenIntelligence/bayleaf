@@ -1,0 +1,47 @@
+// Media Queries Screen Size
+$mobile:         640px;
+$tablet:         768px;
+$tablet__rotate: 1024px;
+$desktop__small: 1200px;
+$laptop:         1366px;
+$desktop__large: 1680px;
+
+// Typography Constants (Golden Ratio)
+$line__height: 1.75;
+
+// Font Family
+$body-font-family: Montserrat, sans-serif;
+$title-font-family: Poppins, sans-serif;
+$code-font-family:  'Andale Mono', AndaleMono, 'Lucida Console', monospace;
+
+// Type Size (Line Height tetratonic scale, ref: http://spencermortensen.com/articles/typographic-scale/)
+$ts1: 2.315;
+$ts2: 2.013;
+$ts3: 1.75;
+$ts4: 1.323;
+$ts5: 1;
+$ts6: 0.8865;
+$ts7: 0.8510;
+$tse: 0.7559;
+$tsx: 1.150;
+
+// Heading font weight
+$bold-font-weight: 700;
+
+// Line length calculated for a given font using 72 small cap CPL rule.
+$line__length: 41rem;
+
+
+// Color Palette
+$accent-color:         #DC1E21;
+$base-color:           #FFFFFF;
+$base-color-light:     #FCFCFC;
+$base-color-dark:      #FAFAFA;
+$base-color-darker:    #F5F5F5;
+$primary-text-color:   #464646;
+$heading-text-color:   #222222;
+$secondary-text-color: #757575;
+$light-text-color:     #999999;
+$divider-color:        #E6E6E6;
+$attention-color:      #00804D;
+$lighter-text-color:   #CCCCCC;

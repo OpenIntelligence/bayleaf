@@ -1,0 +1,35 @@
+@mixin ts($val: 1) {
+	@if (1 == $val) {
+		font-size: $ts3 * 1rem;
+		line-height: lhx($ts3);
+		@media only screen and (min-width: $tablet__rotate) {
+			font-size: $ts1 * 1rem;
+			line-height: lhx($ts1);
+		}
+	} @else if (2 == $val) {
+		font-size: $ts3 * 1rem;
+		line-height: lhx($ts3);
+	} @else if (3 == $val) {
+		font-size: $ts4 * 1rem;
+		line-height: lhx($ts4);
+	} @else if (4 == $val) {
+		font-size: $ts5 * 1rem;
+		line-height: lhx($ts5);
+	} @else if (5 == $val) {
+		font-size: $ts6 * 1rem;
+		line-height: lhx($ts6);
+	} @else if (6 == $val) {
+		font-size: $tse * 1rem;
+		line-height: lhx($tse);
+		@media only screen and (min-width: $tablet__rotate) {
+			font-size: $ts7 * 1rem;
+			line-height: lhx($ts7);
+		}
+	} @else if ( 'e' == $val ) {
+		font-size: $tse * 1rem;
+		line-height: lhx($tse);
+	}  @else if ( 'x' == $val ) {
+		font-size: $tsx * 1rem;
+		line-height: lhx($tsx);
+	}
+}

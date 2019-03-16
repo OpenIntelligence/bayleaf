@@ -1,0 +1,45 @@
+.footer-widget-area {
+	padding-top: mrem(2);
+	@media only screen and (min-width: $tablet) {
+		padding-bottom: mrem(2);
+		.widget {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.footer-items {
+	@include ts(6);
+	letter-spacing: 1px;
+	text-align: center;
+	padding-top: mrem();
+	padding-bottom: mrem();
+	@media only screen and (min-width: $tablet__rotate) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.scrl-to-top {
+	border-radius: 50%;
+	padding: mem(0.5);
+	font-size: 1rem;
+	position: fixed;
+	bottom: 100px;
+	visibility: hidden;
+	opacity: 0;
+	right: 20px;
+	transition: all 0.3s ease-in;
+	@media only screen and (min-width: $tablet__rotate) {
+		right: 40px;
+	}
+	@media only screen and (min-width: $laptop) {
+		right: 60px;
+	}
+	&.makeitvisible {
+		visibility: visible;
+		opacity: 1;
+		z-index: 499;
+	}
+}

@@ -1,0 +1,84 @@
+/**
+* #.# Site Content Area
+*
+* Styles for site content structural components.
+*/
+
+.site-content {
+	border-bottom: 1px solid $divider-color;
+	.index-view &,
+	.home & {
+		margin-top: mrem(2);
+	}
+	@media only screen and (min-width: $tablet__rotate) {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.content-area {	
+	@media only screen and (min-width: $tablet__rotate) {
+		flex: 1;
+	}
+}
+
+.site-main {
+	.singular-view:not(.woocommerce-page) & {
+		margin: 0 auto;
+		@media only screen and (min-width: $tablet) {
+			max-width: $line__length;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	.index-view & {
+		@media only screen and (min-width: $mobile) {
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: mrem();
+		}
+	}
+
+	.index-view.sidebar-left & {
+		@media only screen and (min-width: $tablet__rotate) {
+			padding: 0 mrem();
+		}
+		@media only screen and (min-width: 1400px) {
+			padding-left: mrem(2);
+			padding-right: calc( 50vw - 640px );
+		}
+	}
+
+	.index-view.sidebar-right & {
+		@media only screen and (min-width: $tablet__rotate) {
+			padding: 0 mrem();
+		}
+		@media only screen and (min-width: 1400px) {
+			padding-left: calc( 50vw - 640px );
+			padding-right: mrem(2);
+		}
+	}
+}
+
+.sidebar-widget-area {
+	padding: 0 20px;
+	@media only screen and (min-width: $tablet) {
+		padding: 0 mrem();
+	}
+	@media only screen and (min-width: $tablet__rotate) {
+		width: calc( 240px + #{mrem(2)} );
+		padding: mrem(2) mrem() 0;
+		.sidebar-left & {
+			order: -1;
+		}
+	}
+	@media only screen and (min-width: 1400px) {
+		width: calc( 240px + #{mrem(4)} );
+		padding: mrem(2) mrem(2) 0;
+		margin-right: calc( 50vw - 640px - #{mrem(2)} );
+		.sidebar-left & {
+			margin-right: 0;
+			margin-left: calc( 50vw - 640px - #{mrem(2)} );
+		}
+	}
+}

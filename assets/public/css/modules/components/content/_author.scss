@@ -1,0 +1,35 @@
+.entry-author {
+	padding-top: mrem(2);
+	border-top: 1px solid $divider-color;
+	@media only screen and (min-width: $tablet) {
+		@include ts(5);
+		margin-bottom: 20px;
+	}
+	p {
+		margin-bottom: 0;
+	}
+	&-avatar {
+		float: left;
+		& > img {
+			width: 60px;
+			height: auto;
+			border-radius: 8px;
+			margin-right: mrem(0.5);
+			@media only screen and (min-width: $tablet) {
+				margin-right: mrem();
+				width: 120px;
+			}
+		}
+		&-description {
+			overflow: hidden;
+		}
+	}
+	&-title {
+		margin-bottom: 0;
+		@include ts(3);
+		margin-bottom: mrem(0.5);
+	}
+	&-name {
+		text-transform: capitalize;
+	}
+}

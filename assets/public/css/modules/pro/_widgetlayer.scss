@@ -1,0 +1,68 @@
+.has-featured-img {
+	position: relative;
+	.custom-widget-thumbnail {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		overflow: hidden;
+		border-radius: 8px;
+		@media only screen and (min-width: $tablet) {
+			top: mrem(0.5);
+			right: mrem(0.5);
+			bottom: mrem(0.5);
+			left: mrem(0.5);
+		}
+		.thumb-wrapper {
+			&,
+			img {
+				width: 100%;
+				height: 100%;
+			}
+			img {
+				object-fit: cover;
+			}
+		}
+	}
+	.custom-widget-content {
+		position: relative;
+		padding: mrem();
+		.custom-content-wrapper {
+			background-color: rgba($base-color, 0.95);
+			padding: mrem();
+			border-radius: 8px;
+			.mc4wp-form {
+				background-color: transparent;
+				padding: 0;
+			}
+			.widget-title {
+				margin-bottom: mrem(0.5);
+			}
+		}
+	}
+	&.widescreen {
+		.custom-widget-content {
+			@media only screen and (min-width: $tablet) {
+				&:after {
+					display: block;
+					content: '';
+					clear: both;
+				}
+			}
+			@media only screen and (min-width: $tablet__rotate) {
+				padding: mrem(2.5) mrem(2);
+				.footer-widget-area & {
+					padding: mrem(0.5);
+				}
+			}
+			.custom-content-wrapper {
+				@media only screen and (min-width: $tablet) {
+					width: 50%;
+					float: right;
+				}
+				@media only screen and (min-width: $tablet__rotate) {
+					width: 40%;
+				}
+			}
+		}
+	}
+}
