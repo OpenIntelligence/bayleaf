@@ -88,5 +88,5 @@ class Admin_Page {
 	}
 }
 
-$admin_page = new Admin_Page();
-$admin_page->init();
+$bayleaf_admin_page = new Admin_Page();
+$bayleaf_admin_page->init();
