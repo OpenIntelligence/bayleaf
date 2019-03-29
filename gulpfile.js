@@ -93,13 +93,13 @@ gulp.task( 'watch', function( done ) {
 
 gulp.task('build', gulp.series(
 	function() {
-		return gulp.src('dist', {read: false, allowEmpty: true})
+		return gulp.src('bayleaf', {read: false, allowEmpty: true})
 			.pipe(clean());
 	},
 	function() {
 		return gulp.src([
 			'./**',
-			'!./dist/**/*',
+			'!./bayleaf/**/*',
 			'!./node_modules/**/*',
 			'!./gulpfile.js',
 			'!./package-lock.json',
@@ -108,12 +108,12 @@ gulp.task('build', gulp.series(
 			'!./assets/**/*.scss',
 			'!./assets/public/css',
 		])
-			.pipe(gulp.dest('./dist'));
+			.pipe(gulp.dest('./bayleaf'));
 	},
 	function() {
 		return gulp.src([
-			'./dist/node_modules',
-			'./dist/assets/public/css',
+			'./bayleaf/node_modules',
+			'./bayleaf/assets/public/css',
 		])
 			.pipe(clean());
 	}
