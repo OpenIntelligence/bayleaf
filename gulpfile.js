@@ -105,16 +105,15 @@ gulp.task('build', gulp.series(
 			'!./package-lock.json',
 			'!./package.json',
 			'!./webpack.config.js',
-			'!./admin/**/*.scss',
-			'!./public/css/partials',
-			'!./public/**/*.scss',
+			'!./assets/**/*.scss',
+			'!./assets/public/css',
 		])
 			.pipe(gulp.dest('./dist'));
 	},
 	function() {
 		return gulp.src([
 			'./dist/node_modules',
-			'./dist/public/css/partials',
+			'./dist/assets/public/css',
 		])
 			.pipe(clean());
 	}

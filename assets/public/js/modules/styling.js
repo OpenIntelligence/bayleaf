@@ -18,6 +18,7 @@ class StylingControl {
 		this.elems = lib.get(elem.widthStyle);
 
 		this.widthStyleControl();
+		lib.addRaf(this.widthStyleControl.bind(this), 'resize');
 	}
 
 	/**

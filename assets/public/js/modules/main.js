@@ -1,10 +1,10 @@
-import lib from './modules/library';
-import ScrollToTop from './modules/scrolltop';
-import Menu from './modules/menu';
-import Styling from './modules/styling';
-import ResVid from './modules/resvid';
-import Hwidget from './modules/hwidget';
-import Comments from './modules/comments';
+import lib from './library';
+import ScrollToTop from './scrolltop';
+import Menu from './menu';
+import Styling from './styling';
+import ResVid from './resvid';
+import Hwidget from './hwidget';
+import Comments from './comments';
 
 class Main {
 
@@ -19,6 +19,9 @@ class Main {
 
 		// Update global data on window scroll.
 		lib.updateOnScroll();
+
+		// Update global data on window resize.
+		lib.updateOnResize();
 
 		// Add slider functionality.
 		lib.addSlider('.slider-wrapper', '.dp-entry', '', {next: '.dp-next-slide', prev: '.dp-prev-slide'});

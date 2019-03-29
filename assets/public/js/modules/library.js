@@ -3,13 +3,15 @@ let scrollingElem = document.scrollingElement || document.documentElement || doc
 let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 let bodyHeight = Math.max( body.offsetHeight, body.scrollHeight );
 let isScrolling = false;
+let isResizing = false;
+let isRafRegistered = false;
 let bodyScrollDisabled = false;
 let scrollPosition = 0;
 let windowHeight = window.innerHeight;
 let library = {
 	
 	body, scrollingElem, scrollTop, bodyScrollDisabled, scrollPosition, windowHeight,
-	bodyHeight, isScrolling, rafScrollCallbacks: [],
+	bodyHeight, isScrolling, isResizing, rafScrollCallbacks: [], rafResizeCallbacks: [], isRafRegistered,
 
 	/**
 	 * Check if we are on Ios.
@@ -50,8 +52,16 @@ let library = {
 	 */
 	onRaf() {
 
-		if (0 === this.rafScrollCallbacks.length) return;
+		const scrl = this.rafScrollCallbacks.length;
+		const resz = this.rafResizeCallbacks.length;
+		if (0 === scrl && 0 === resz) {
+			this.isRafRegistered = false;
+			return;
+		}
+
 		if (this.isScrolling) this.runRafScroll();
+		if (this.isResizing) this.runRafResize();
+
 		if (window.requestAnimationFrame) {
 			window.requestAnimationFrame(this.onRaf.bind(this));
 		} else {
@@ -71,16 +81,39 @@ let library = {
 	},
 
 	/**
+	 * Run all stacked functions at RAF.
+	 * 
+	 * @since 1.3.5
+	 */
+	runRafResize() {
+
+		let callbacks = this.rafResizeCallbacks.filter( callback => 'unbind' !== callback() );
+		this.rafResizeCallbacks = callbacks;
+	},
+
+	/**
 	 * Add a callback to the stack.
 	 * 
 	 * @since 1.3.5
 	 * 
 	 * @param {function} callback 
+	 * @param {string} type Type of continuous event
 	 */
-	addRaf(callback) {
+	addRaf(callback, type = 'scroll') {
 
-		if (callback) this.rafScrollCallbacks.push(callback);
-		if (1 === this.rafScrollCallbacks.length) this.onRaf();
+		if ('function' !== typeof callback) return;
+		callback();
+
+		if ('resize' === type) {
+			this.rafResizeCallbacks.push(callback);
+		} else {
+			this.rafScrollCallbacks.push(callback);
+		}
+
+		if ( false === this.isRafRegistered ) {
+			this.onRaf();
+			this.isRafRegistered = true;
+		}
 	},
 
 	/**
@@ -100,6 +133,27 @@ let library = {
 			clearTimeout(scrollTimer);
 			scrollTimer = setTimeout( () => {
 				this.isScrolling = false;
+			}, 16.66 );
+		});
+	},
+
+	/**
+	 * Update globals on screen resize.
+	 * 
+	 * @since 1.3.5
+	 */
+	updateOnResize() {
+		let resizeTimer1 = null;
+		let resizeTimer2 = null;
+
+		window.addEventListener('resize', e => {
+			clearTimeout(resizeTimer1);
+			resizeTimer1 = setTimeout( () => {
+				this.isResizing = true;
+				clearTimeout(resizeTimer2);
+				resizeTimer2 = setTimeout( () => {
+					this.isResizing = false;
+				}, 20 )
 			}, 16.66 );
 		});
 	},
@@ -378,6 +432,7 @@ let library = {
 				this.animation(elem, time, from, change, duration, fn, lastfn);
 			}, increment);
 		} else {
+			fn(elem, from + change);
 			if ('function' === typeof lastfn) lastfn(elem);
 		}
 	},
@@ -434,9 +489,9 @@ let library = {
 			if (! ani) return;
 			this.addRaf( () => {
 				let offset = top - this.scrollTop;
+				if (height !== this.bodyHeight) offset = element.getBoundingClientRect().top;
 				let percent = Math.floor( offset / this.windowHeight * 100 );
 
-				if (height !== this.bodyHeight) offset = element.getBoundingClientRect().top;
 				if ( percent < revealon ) {
 					element.classList.add(ani);
 					element.classList.add(easing);
