@@ -18,10 +18,11 @@
 	position: fixed;
 	overflow: scroll;
 	width: 100%;
-	&.admin-bar {
-		padding-top: 46px;
-		@media only screen and (min-width: 782px) {
-			padding-top: 32px;
+	.admin-bar {
+		@media only screen and (max-width: 600px) {
+			#wpadminbar {
+				position: fixed;
+			}
 		}
 	}
 }

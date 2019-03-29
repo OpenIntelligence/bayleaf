@@ -1141,10 +1141,6 @@ button.search-submit:focus {
 	width: 100%;
 }
 
-.no-scroll.admin-bar {
-	padding-top: 46px;
-}
-
 .italic {
 	font-style: italic;
 }
@@ -3978,12 +3974,6 @@ body:not(.error404) .page-header-description {
 	}
 }
 
-@media only screen and (min-width: 782px) {
-	.no-scroll.admin-bar {
-		padding-top: 32px;
-	}
-}
-
 @media only screen and (min-width: 1024px) {
 	.screen-reader-text:focus {
 		font-size: 0.851rem;
@@ -4572,6 +4562,12 @@ body:not(.error404) .page-header-description {
 	.slider1 .sub-entry {
 		top: 0;
 		padding: 3.5rem;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.no-scroll .admin-bar #wpadminbar {
+		position: fixed;
 	}
 }
 
