@@ -153,7 +153,7 @@ let library = {
 				clearTimeout(resizeTimer2);
 				resizeTimer2 = setTimeout( () => {
 					this.isResizing = false;
-				}, 20 )
+				}, 60 );
 			}, 16.66 );
 		});
 	},
